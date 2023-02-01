@@ -1,8 +1,10 @@
 import React from 'react'
+import Tag from './Tag';
+import { tags } from './config';
 
 const TagList = () => {
   return (
-    <div>TagList</div>
+    tags.map((tagName)=>(<Tag tagName={tagName} key={tagName}></Tag>))
   )
 }
 
