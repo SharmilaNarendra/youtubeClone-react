@@ -2,19 +2,28 @@ import './App.css';
 import Nav from "./Nav"
 import Panel from "./Panel"
 import Body from "./Body"
-import store from './store';
-import { Provider } from 'react-redux';
+import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import VedioPage from './watch/VedioPage';
+ 
+const router = createBrowserRouter([
+  {
+   path:"/",
+   element:<Body></Body>
+  },
+  {
+   path:"/watch",
+   element:<VedioPage></VedioPage>
+  }
+]);
+
 function App() {
-  
   return (
     <>
-     <Provider store={store}>
       <Nav></Nav>
       <div className='grid grid-flow-col grid-cols-12'>
       <Panel ></Panel>
-      <Body></Body>
+      <RouterProvider router={router}></RouterProvider>
       </div>
-      </Provider>
     </>
   );
 }

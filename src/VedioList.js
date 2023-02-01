@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "./fetchData";
 import VedioCard from "./VedioCard";
+import { useSelector,useDispatch } from "react-redux";
+import { cacheVedios } from "./redux/dataSlice";
+import { showMenu } from "./redux/appSlice";
 
 const VedioList = () => {
-  const [vedioList, setVedioList] = useState([]);
+  const dispatch = useDispatch();
+  const vedios = useSelector((store)=>store.data.vedioList)
 
   useEffect(() => {
-    fetchData().then((data) => {
+    dispatch(showMenu());
+    !vedios.length && fetchData().then((data) => {
       console.log(data);
-      setVedioList(data.items);
+      dispatch(cacheVedios(data.items))
     });
   }, []);
 
-  return(
+  return !vedios.length? <h3> No Vedios Found</h3>:(
     <div className="flex flex-wrap gap-7">
-    {vedioList.map((vedio)=><VedioCard vedioData={vedio} key={vedio.id}></VedioCard>)}
+    {vedios.map((vedio)=><VedioCard vedioData={vedio} key={vedio.id}></VedioCard>)}
     </div>
   );
 };

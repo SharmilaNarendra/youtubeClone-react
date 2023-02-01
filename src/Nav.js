@@ -2,7 +2,7 @@ import React from 'react'
 import ham from './images/menu.png'
 import userIcon from './images/userIcon.png'
 import { useDispatch } from 'react-redux'
-import {toggleMenu} from './appSlice'
+import {toggleMenu} from './redux/appSlice'
 
 const Nav = () => {
     const dispatch = useDispatch();
