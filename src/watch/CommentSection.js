@@ -4,7 +4,7 @@ import Comment from './Comment'
 
 const nestedComments=(comments)=>{
     return <div>{comments?.map((commenObj,index)=>
-        <div className='ml-5'>
+        <div className='ml-5' key={index}>
         <Comment commenObj={commenObj} slno={index} key={index}/>
         {commenObj?.replies && nestedComments(commenObj?.replies)}
         </div>
